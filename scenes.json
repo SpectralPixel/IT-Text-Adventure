@@ -1,0 +1,32 @@
+{
+    "start": {
+        "name": "Start",
+        "text": "some descriptiom or story",
+        "image": "image file path",
+        "options": [
+            {
+                "action": "option1",
+                "link": "scene xyz"
+            },
+            {
+                "action": "option2",
+                "link": "escena"
+            }
+        ]
+    },
+    "scene xyz": {
+        "name": "Something else",
+        "text": "some descriptiom or story (again)",
+        "image": "image 2 electric boogaloo",
+        "options": [
+            {
+                "action": "option1",
+                "link": "some other scene"
+            },
+            {
+                "action": "option2",
+                "link": "scene :3"
+            }
+        ]
+    }
+}
