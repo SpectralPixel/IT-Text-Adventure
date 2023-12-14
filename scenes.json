@@ -1,6 +1,6 @@
 {
     "start": {
-        "name": "Start",
+        "name": "Text Adventure!",
         "text": "some descriptiom or story",
         "image": "image file path",
         "options": [

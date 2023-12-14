@@ -1,6 +1,7 @@
 from tkinter import *
 import json
 
+
 #region ----- open files -----
 
 scenes = ""
@@ -12,13 +13,23 @@ scenes = json.loads(scenes) # Turn plaintext into dictionary
 
 #endregion ----------
 
+
 #region ----- set up window & gui -----
 
 window = Tk()
 window.title("Text Adventure")
-window.geometry("300x350")
+window.geometry("777x444")
+
+winImage = PhotoImage() # space to display images
+winTitle = Label() # title of the current scene
+winText = Label() # main text with the story from the current scene
+winField = Label() # text field to input commands
+winReset = Label() # reset button
+
+
 
 #endregion ----------
+
 
 currentScene = "start"
 print(scenes[currentScene]["name"])
