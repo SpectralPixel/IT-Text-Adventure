@@ -19,24 +19,98 @@ scenes = json.loads(scenes) # Turn plaintext into dictionary
 
 window = Tk()
 window.title("Text Adventure")
-window.geometry("777x444")
+#window.geometry("777x444")
 
-winTitle = Label(window, text = "hello world\nnewline!!!") # title of the current scene
-winCanvas = Canvas(window, width = 80, height = 80, bg = 'white') # space to display images
+winSceneTitle = Label( 
+    window,
+    text = "hello world",
+    anchor = "w",
+    justify = "left"
+)
+winSceneText = Label( 
+    window,
+    text = "hello world\nnewline!!!\nthis is the text field",
+    anchor = "w",
+    justify = "left"
+)
+winOptionsTitle = Label(
+    window,
+    text = "Options:",
+    anchor = "w",
+)
+winAllOptions = Label(
+    window,
+    text =
+        ">Option1\n" + 
+        ">Option2",
+    anchor = "w",
+    justify = "left"
+)
+
+# canvas to display images
+winCanvas = Canvas( 
+    window,
+    width = 400,
+    height = 400,
+    bg = "white"
+)
+
+winEntry = Entry()
+winConfirm = Button(text = "Enter")
+winRestart = Button(text = "Restart")
+
+window.columnconfigure(
+    0,
+    weight = 4 # makes column 0 be as wide as 4 columns
+)
+
+winSceneTitle.grid(
+    row = 0,
+    column = 0,
+    columnspan = 3
+)
+winCanvas.grid(
+    row = 1,
+    column = 0,
+    columnspan = 3
+)
+winSceneText.grid(
+    row = 2,
+    column = 0,
+    rowspan = 4,
+    sticky = NW
+)
+winOptionsTitle.grid(
+    row = 2,
+    column = 1,
+    columnspan = 2,
+    sticky = EW
+)
+winAllOptions.grid(
+    row = 3,
+    column = 1,
+    columnspan = 2,
+    sticky = W
+)
+winEntry.grid(
+    row = 4,
+    column = 1,
+    columnspan = 2
+)
+winConfirm.grid(
+    row = 5,
+    column = 1,
+    sticky = EW
+)
+winRestart.grid(
+    row = 5,
+    column = 2,
+    sticky = EW
+)
+
+# place the image on the canvas
 winImage = ImageTk.PhotoImage(file = "coconut.jpg")
-winText = Label(window, text = "hello world\nnewline!!!\nthis is the text field") # main text with the story from the current scene
-winEntry = Entry() # text field to input commands
-winOptions = Label(text = ">Option1\n>Option2") # list of all possible commands
-winConfirm = Button(text = "Enter") # confirm button
-winReset = Button(text = "Reset") # reset button
-
-winTitle.grid(row = 0, column = 0, columnspan = 6)
-winCanvas.grid(row = 1, column = 0, columnspan = 6)
-winCanvas.create_image(0, 0, image = winImage)
-winText.grid(row = 2, column = 0, rowspan = 3, columnspan = 4)
-winOptions.grid(row = 2, column = 5, columnspan = 2)
-winConfirm.grid(row = 3, column = 5)
-winReset.grid(row = 3, column = 6)
+winCanvas.create_image(200, 200, image = winImage)
 
 #endregion ----------
 
