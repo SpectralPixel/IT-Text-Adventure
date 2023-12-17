@@ -2,24 +2,13 @@ from tkinter import *
 from PIL import ImageTk, Image
 import json
 
+CANVAS_SIZE = (400, 400)
+FIRST_SCENE = "start"
 
-#region ----- open files -----
-
-scenes = ""
-with open("scenes.json", "r") as file:
-    scenes = file.read() # Read file as plaintext
-scenes = json.loads(scenes) # Turn plaintext into dictionary
-
-#mainPic = PhotoImage(file = 'Placeholder')
-
-#endregion ----------
-
-
-#region ----- set up window & gui -----
+#region ----- Set up window & GUI -----
 
 window = Tk()
 window.title("Text Adventure")
-#window.geometry("777x444")
 
 winSceneTitle = Label( 
     window,
@@ -33,12 +22,12 @@ winSceneText = Label(
     anchor = "w",
     justify = "left"
 )
-winOptionsTitle = Label(
+winSceneOptionsTitle = Label(
     window,
     text = "Options:",
     anchor = "w",
 )
-winAllOptions = Label(
+winSceneOptions = Label(
     window,
     text =
         ">Option1\n" + 
@@ -50,8 +39,8 @@ winAllOptions = Label(
 # canvas to display images
 winCanvas = Canvas( 
     window,
-    width = 400,
-    height = 400,
+    width = CANVAS_SIZE[0],
+    height = CANVAS_SIZE[1],
     bg = "white"
 )
 
@@ -59,9 +48,21 @@ winEntry = Entry()
 winConfirm = Button(text = "Enter")
 winRestart = Button(text = "Restart")
 
+#endregion ----------
+
+#region ----- Place GUI -----
+
 window.columnconfigure(
     0,
-    weight = 4 # makes column 0 be as wide as 4 columns
+    weight = 16 # makes column 0 be as wide as 4 columns
+)
+window.columnconfigure(
+    1,
+    weight = 4
+)
+window.columnconfigure(
+    2,
+    weight = 1
 )
 
 winSceneTitle.grid(
@@ -80,13 +81,13 @@ winSceneText.grid(
     rowspan = 4,
     sticky = NW
 )
-winOptionsTitle.grid(
+winSceneOptionsTitle.grid(
     row = 2,
     column = 1,
     columnspan = 2,
     sticky = EW
 )
-winAllOptions.grid(
+winSceneOptions.grid(
     row = 3,
     column = 1,
     columnspan = 2,
@@ -95,12 +96,13 @@ winAllOptions.grid(
 winEntry.grid(
     row = 4,
     column = 1,
-    columnspan = 2
+    columnspan = 2,
+    sticky = EW
 )
 winConfirm.grid(
     row = 5,
     column = 1,
-    sticky = EW
+    sticky = EW,
 )
 winRestart.grid(
     row = 5,
@@ -108,15 +110,47 @@ winRestart.grid(
     sticky = EW
 )
 
-# place the image on the canvas
-winImage = ImageTk.PhotoImage(file = "coconut.jpg")
-winCanvas.create_image(200, 200, image = winImage)
+#endregion ----------
+
+#region ----- Open files -----
+
+scenes = ""
+with open("scenes.json", "r") as file:
+    scenes = file.read() # Read file as plaintext
+scenes = json.loads(scenes) # Turn plaintext into dictionary
 
 #endregion ----------
 
+def loadScene(scene):
+    # load title
+    sceneTitle = scenes[scene]["name"]
+    winSceneTitle.configure(text = sceneTitle)
 
-currentScene = "start"
-print(scenes[currentScene]["name"])
+    # load text
+    sceneText = scenes[scene]["text"]
+    winSceneText.configure(text = sceneText)
+
+    # load options
+    sceneOptions = scenes[scene]["options"]
+    sceneOptionsText = ""
+    for option in sceneOptions:
+        sceneOptionsText += ">" + option["action"] + "\n"
+    winSceneOptions.configure(text = sceneOptionsText)
+
+    # load image (and resize it to fit the canvas)
+    sceneImagePath = "Images" + "\\" + scenes[scene]["image"]
+    sceneImage = Image.open(sceneImagePath)
+    sceneImage = sceneImage.resize((CANVAS_SIZE[0], CANVAS_SIZE[1]), Image.NEAREST)
+    global sceneImageTk # sceneImageTk has to be declared globally so the memory isn't freed after this funtion ends, resulting in the image to disappear
+    sceneImageTk = ImageTk.PhotoImage(sceneImage)
+    winCanvas.create_image( # place the image on the canvas
+        CANVAS_SIZE[0] / 2,
+        CANVAS_SIZE[1] / 2,
+        image = sceneImageTk
+    )
+
+currentScene = FIRST_SCENE
+loadScene(currentScene)
 
 mainloop()
 

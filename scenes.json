@@ -2,14 +2,14 @@
     "start": {
         "name": "Text Adventure!",
         "text": "some descriptiom or story",
-        "image": "image file path",
+        "image": "coconut.jpg",
         "options": [
             {
                 "action": "option1",
                 "link": "scene xyz"
             },
             {
-                "action": "option2",
+                "action": "option2 hello",
                 "link": "escena"
             }
         ]
@@ -17,15 +17,15 @@
     "scene xyz": {
         "name": "Something else",
         "text": "some descriptiom or story (again)",
-        "image": "image 2 electric boogaloo",
+        "image": "imgimg.png",
         "options": [
             {
-                "action": "option1",
+                "action": "optionaghuiasdopfh",
                 "link": "some other scene"
             },
             {
-                "action": "option2",
-                "link": "scene :3"
+                "action": "optionnnnnn",
+                "link": "scene 2 electric boogaloo"
             }
         ]
     }
