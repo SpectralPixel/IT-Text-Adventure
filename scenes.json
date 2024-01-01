@@ -1,7 +1,7 @@
 {
     "start": {
         "name": "Text Adventure!",
-        "text": "some descriptiom or story",
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec commodo, diam maximus tincidunt finibus, lorem eros eleifend dolor, eget varius turpis magna lacinia lorem. Integer quam ex, blandit eget vulputate a, eleifend eget diam. Vestibulum accumsan nibh nec urna lacinia, quis malesuada odio volutpat. Phasellus ac imperdiet tortor. Curabitur molestie nibh non neque sollicitudin, ornare euismod lorem rhoncus. Vestibulum malesuada velit id aliquet eleifend. Sed sed consectetur nisl. Vestibulum blandit vitae quam sit amet venenatis.",
         "image": "coconut.jpg",
         "options": [
             {

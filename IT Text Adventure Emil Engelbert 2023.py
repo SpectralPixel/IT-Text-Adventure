@@ -2,7 +2,7 @@ from tkinter import *
 from PIL import ImageTk, Image
 import json
 
-CANVAS_SIZE = (400, 400)
+CANVAS_SIZE = (300, 300)
 FIRST_SCENE = "start"
 
 #region ----- Set up window & GUI -----
@@ -19,6 +19,7 @@ winSceneTitle = Label(
 winSceneText = Label( 
     window,
     text = "hello world\nnewline!!!\nthis is the text field",
+    wraplength = 300,
     anchor = "w",
     justify = "left"
 )
@@ -47,6 +48,7 @@ winCanvas = Canvas(
 winEntry = Entry()
 winConfirm = Button(text = "Enter")
 winRestart = Button(text = "Restart")
+winSave = Button(text = "Save & Exit")
 
 #endregion ----------
 
@@ -54,60 +56,68 @@ winRestart = Button(text = "Restart")
 
 window.columnconfigure(
     0,
-    weight = 16 # makes column 0 be as wide as 4 columns
+    weight = 3 # makes column 0 be as wide as X columns
 )
 window.columnconfigure(
     1,
-    weight = 4
+    weight = 3
 )
 window.columnconfigure(
     2,
-    weight = 1
+    weight = 2
+)
+window.rowconfigure(
+    1,
+    weight = 2
 )
 
 winSceneTitle.grid(
     row = 0,
     column = 0,
-    columnspan = 3
-)
-winCanvas.grid(
-    row = 1,
-    column = 0,
-    columnspan = 3
+    sticky = N
 )
 winSceneText.grid(
-    row = 2,
+    row = 1,
     column = 0,
-    rowspan = 4,
     sticky = NW
 )
 winSceneOptionsTitle.grid(
     row = 2,
-    column = 1,
-    columnspan = 2,
-    sticky = EW
+    column = 0,
+    sticky = SW
 )
 winSceneOptions.grid(
     row = 3,
-    column = 1,
-    columnspan = 2,
-    sticky = W
+    column = 0,
+    sticky = SW
 )
 winEntry.grid(
     row = 4,
-    column = 1,
+    column = 0,
     columnspan = 2,
     sticky = EW
 )
 winConfirm.grid(
-    row = 5,
-    column = 1,
+    row = 4,
+    column = 2,
     sticky = EW,
 )
-winRestart.grid(
-    row = 5,
-    column = 2,
+winSave.grid(
+    row = 4,
+    column = 3,
     sticky = EW
+)
+winRestart.grid(
+    row = 4,
+    column = 4,
+    sticky = EW
+)
+winCanvas.grid(
+    row = 0,
+    rowspan = 4,
+    column = 1,
+    columnspan = 4,
+    sticky = E
 )
 
 #endregion ----------
@@ -141,7 +151,7 @@ def loadScene(scene):
     sceneImagePath = "Images" + "\\" + scenes[scene]["image"]
     sceneImage = Image.open(sceneImagePath)
     sceneImage = sceneImage.resize((CANVAS_SIZE[0], CANVAS_SIZE[1]), Image.NEAREST)
-    global sceneImageTk # sceneImageTk has to be declared globally so the memory isn't freed after this funtion ends, resulting in the image to disappear
+    global sceneImageTk # sceneImageTk has to be declared globally so the memory isn't freed after this function ends, resulting in the image to disappear
     sceneImageTk = ImageTk.PhotoImage(sceneImage)
     winCanvas.create_image( # place the image on the canvas
         CANVAS_SIZE[0] / 2,
