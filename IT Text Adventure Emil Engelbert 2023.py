@@ -5,6 +5,36 @@ import json
 CANVAS_SIZE = (300, 300)
 FIRST_SCENE = "start"
 
+#region ----- Open files -----
+
+print("Loading game files")
+
+scenes = ""
+with open("scenes.json", "r") as file:
+    scenes = file.read() # Read file as plaintext
+scenes = json.loads(scenes) # Turn plaintext into dictionary
+
+print("Game files loaded")
+
+#endregion ----------
+
+#region ----- Button Commands -----
+
+def validateCommand(event = None): # event is apparently needed for the Return keybind to work...
+    command = winEntry.get()
+    winEntry.configure(text = "")
+
+    for option in scenes[currentScene]["options"]:
+        if option["action"].lower() == command.lower():
+            print("Loading scene: {}".format(option["link"]))
+            loadScene(option["link"])
+
+def reset():
+    print("Progress reset")
+    loadScene(FIRST_SCENE)
+
+#endregion ----------
+
 #region ----- Set up window & GUI -----
 
 window = Tk()
@@ -46,8 +76,16 @@ winCanvas = Canvas(
 )
 
 winEntry = Entry()
-winConfirm = Button(text = "Enter")
-winRestart = Button(text = "Restart")
+window.bind('<Return>', validateCommand) # when Return is pressed, run validateCommand
+
+winConfirm = Button(
+    text = "Enter",
+    command = validateCommand
+)
+winRestart = Button(
+    text = "Restart",
+    command = reset
+)
 winSave = Button(text = "Save & Exit")
 
 #endregion ----------
@@ -122,16 +160,10 @@ winCanvas.grid(
 
 #endregion ----------
 
-#region ----- Open files -----
+def loadScene(scene: str): # force input type to be a string to avoid shenanigans
+    global currentScene
+    currentScene = scene
 
-scenes = ""
-with open("scenes.json", "r") as file:
-    scenes = file.read() # Read file as plaintext
-scenes = json.loads(scenes) # Turn plaintext into dictionary
-
-#endregion ----------
-
-def loadScene(scene):
     # load title
     sceneTitle = scenes[scene]["name"]
     winSceneTitle.configure(text = sceneTitle)
@@ -159,8 +191,7 @@ def loadScene(scene):
         image = sceneImageTk
     )
 
-currentScene = FIRST_SCENE
-loadScene(currentScene)
+loadScene(FIRST_SCENE)
 
 mainloop()
 
