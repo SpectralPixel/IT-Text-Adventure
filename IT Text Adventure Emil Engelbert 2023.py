@@ -160,6 +160,44 @@ winCanvas.grid(
 
 #endregion ----------
 
+frame_index = 0
+def updateFrames():
+    global frame_index
+    frame = sceneFramesTk[frame_index]
+    frame_index += 1
+    if frame_index >= sceneFramesTk.__len__():
+        frame_index = 0
+    
+    winCanvas.create_image( # place the image on the canvas
+        CANVAS_SIZE[0] / 2,
+        CANVAS_SIZE[1] / 2,
+        image = frame
+    )
+
+    window.after(100, updateFrames) # to keep the cycle going
+window.after(100, updateFrames) # to begin the cycle
+
+def loadImage(path: str):
+    sceneImage = Image.open(path)
+
+    global sceneFramesTk # sceneFramesTk has to be declared globally so the memory isn't freed after this function ends, resulting in the image to disappear
+    sceneFramesTk = [] # a list of all the frames in the gif
+
+    keyframes = 1
+    if path[path.__len__() - 3:] == "gif": # since it's not guaranteed that the file type is a gif and has the n_frames attribute
+        keyframes = sceneImage.n_frames
+
+    for i in range(keyframes):
+        frame = sceneImage
+        frame.seek(keyframes // keyframes * i)
+        frame = frame.resize((CANVAS_SIZE[0], CANVAS_SIZE[1]), Image.NEAREST)
+        # global sceneFrameTk
+        sceneFrameTk = ImageTk.PhotoImage(frame)
+        sceneFramesTk.append(sceneFrameTk)
+    
+    global frame_index
+    frame_index = 0
+
 def loadScene(scene: str): # force input type to be a string to avoid shenanigans
     global currentScene
     currentScene = scene
@@ -181,15 +219,7 @@ def loadScene(scene: str): # force input type to be a string to avoid shenanigan
 
     # load image (and resize it to fit the canvas)
     sceneImagePath = "Images" + "\\" + scenes[scene]["image"]
-    sceneImage = Image.open(sceneImagePath)
-    sceneImage = sceneImage.resize((CANVAS_SIZE[0], CANVAS_SIZE[1]), Image.NEAREST)
-    global sceneImageTk # sceneImageTk has to be declared globally so the memory isn't freed after this function ends, resulting in the image to disappear
-    sceneImageTk = ImageTk.PhotoImage(sceneImage)
-    winCanvas.create_image( # place the image on the canvas
-        CANVAS_SIZE[0] / 2,
-        CANVAS_SIZE[1] / 2,
-        image = sceneImageTk
-    )
+    loadImage(sceneImagePath)
 
 loadScene(FIRST_SCENE)
 
