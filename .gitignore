@@ -1,3 +1,8 @@
+# hand tracked files
+save.txt
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

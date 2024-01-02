@@ -1,37 +1,58 @@
 from tkinter import *
 from PIL import ImageTk, Image
+from os.path import exists
 import json
 
 CANVAS_SIZE = (300, 300)
 FIRST_SCENE = "start"
 
-#region ----- Open files -----
+#region ----- Open game files -----
 
-print("Loading game files")
+print("Loading story file...")
 
-scenes = ""
-with open("scenes.json", "r") as file:
-    scenes = file.read() # Read file as plaintext
+file = open("scenes.json", "r")
+scenes = file.read() # Read file as plaintext
 scenes = json.loads(scenes) # Turn plaintext into dictionary
 
-print("Game files loaded")
+print("Game files loaded.")
+
+print("Loading save file...")
+
+if not exists("save.txt"):
+    save_file = open("save.txt", "w")
+    save_file.writelines([FIRST_SCENE])
+save_file = open("save.txt", "r")
+current_scene = save_file.read().strip()
+
+print("Progress loaded.")
 
 #endregion ----------
 
 #region ----- Button Commands -----
 
-def validateCommand(event = None): # event is apparently needed for the Return keybind to work...
-    command = winEntry.get()
-    winEntry.configure(text = "")
+def validate_command(event = None): # event is apparently needed for the Return keybind to work...
+    command = win_entry.get()
+    win_entry.configure(text = "")
 
-    for option in scenes[currentScene]["options"]:
+    for option in scenes[current_scene]["options"]:
         if option["action"].lower() == command.lower():
-            print("Loading scene: {}".format(option["link"]))
-            loadScene(option["link"])
+            load_scene(option["link"])
 
 def reset():
     print("Progress reset")
-    loadScene(FIRST_SCENE)
+    load_scene(FIRST_SCENE)
+
+def save_and_exit():
+    print()
+    save_progress()
+    print("Exiting program...")
+    exit()
+
+def save_progress():
+    print("Saving progress...")
+    save_file = open("save.txt", "w")
+    save_file.writelines([current_scene])
+    print("Progress saved")
 
 #endregion ----------
 
@@ -40,194 +61,187 @@ def reset():
 window = Tk()
 window.title("Text Adventure")
 
-winSceneTitle = Label( 
+win_scene_title = Label( 
     window,
-    text = "hello world",
     anchor = "w",
     justify = "left"
 )
-winSceneText = Label( 
+win_scene_text = Label( 
     window,
-    text = "hello world\nnewline!!!\nthis is the text field",
     wraplength = 300,
     anchor = "w",
     justify = "left"
 )
-winSceneOptionsTitle = Label(
+win_scene_options_title = Label(
     window,
     text = "Options:",
     anchor = "w",
 )
-winSceneOptions = Label(
+win_scene_options = Label(
     window,
-    text =
-        ">Option1\n" + 
-        ">Option2",
     anchor = "w",
     justify = "left"
 )
 
 # canvas to display images
-winCanvas = Canvas( 
+win_canvas = Canvas( 
     window,
     width = CANVAS_SIZE[0],
     height = CANVAS_SIZE[1],
     bg = "white"
 )
 
-winEntry = Entry()
-window.bind('<Return>', validateCommand) # when Return is pressed, run validateCommand
+win_entry = Entry()
+window.bind('<Return>', validate_command) # when Return is pressed, run validateCommand
 
-winConfirm = Button(
+win_confirm = Button(
     text = "Enter",
-    command = validateCommand
+    command = validate_command
 )
-winRestart = Button(
+win_restart = Button(
     text = "Restart",
     command = reset
 )
-winSave = Button(text = "Save & Exit")
+win_save = Button(
+    text = "Save & Exit",
+    command = save_and_exit
+)
 
 #endregion ----------
 
 #region ----- Place GUI -----
 
-window.columnconfigure(
-    0,
-    weight = 3 # makes column 0 be as wide as X columns
-)
-window.columnconfigure(
-    1,
-    weight = 3
-)
-window.columnconfigure(
-    2,
-    weight = 2
-)
 window.rowconfigure(
     1,
-    weight = 2
+    weight = 2 # makes row X be as wide as Y rows
 )
 
-winSceneTitle.grid(
+win_scene_title.grid(
     row = 0,
     column = 0,
     sticky = N
 )
-winSceneText.grid(
+win_scene_text.grid(
     row = 1,
     column = 0,
     sticky = NW
 )
-winSceneOptionsTitle.grid(
+win_scene_options_title.grid(
     row = 2,
     column = 0,
     sticky = SW
 )
-winSceneOptions.grid(
+win_scene_options.grid(
     row = 3,
     column = 0,
     sticky = SW
 )
-winEntry.grid(
+win_entry.grid(
     row = 4,
     column = 0,
-    columnspan = 2,
     sticky = EW
 )
-winConfirm.grid(
+win_confirm.grid(
     row = 4,
-    column = 2,
+    column = 1,
     sticky = EW,
 )
-winSave.grid(
+win_save.grid(
+    row = 4,
+    column = 2,
+    sticky = EW
+)
+win_restart.grid(
     row = 4,
     column = 3,
     sticky = EW
 )
-winRestart.grid(
-    row = 4,
-    column = 4,
-    sticky = EW
-)
-winCanvas.grid(
+win_canvas.grid(
     row = 0,
     rowspan = 4,
     column = 1,
-    columnspan = 4,
+    columnspan = 3,
     sticky = E
 )
 
 #endregion ----------
 
+#region ----- Scene utility functions -----
+
 frame_index = 0
-def updateFrames():
+def update_frames():
     global frame_index
-    frame = sceneFramesTk[frame_index]
+    frame = scene_frames_tk[frame_index]
     frame_index += 1
-    if frame_index >= sceneFramesTk.__len__():
+    if frame_index >= scene_frames_tk.__len__():
         frame_index = 0
     
-    winCanvas.create_image( # place the image on the canvas
+    win_canvas.create_image( # place the image on the canvas
         CANVAS_SIZE[0] / 2,
         CANVAS_SIZE[1] / 2,
         image = frame
     )
 
-    window.after(100, updateFrames) # to keep the cycle going
-window.after(100, updateFrames) # to begin the cycle
+    window.after(50, update_frames) # to keep the cycle going
+window.after(0, update_frames) # to begin the cycle
 
-def loadImage(path: str):
-    sceneImage = Image.open(path)
+def load_image(path: str):
+    print("Loading image: {}".format(path))
 
-    global sceneFramesTk # sceneFramesTk has to be declared globally so the memory isn't freed after this function ends, resulting in the image to disappear
-    sceneFramesTk = [] # a list of all the frames in the gif
+    scene_image = Image.open(path)
+
+    global scene_frames_tk # sceneFramesTk has to be declared globally so the memory isn't freed after this function ends, resulting in the image to disappear
+    scene_frames_tk = [] # a list of all the frames in the gif
 
     keyframes = 1
     if path[path.__len__() - 3:] == "gif": # since it's not guaranteed that the file type is a gif and has the n_frames attribute
-        keyframes = sceneImage.n_frames
+        keyframes = scene_image.n_frames
 
     for i in range(keyframes):
-        frame = sceneImage
+        frame = scene_image
         frame.seek(keyframes // keyframes * i)
         frame = frame.resize((CANVAS_SIZE[0], CANVAS_SIZE[1]), Image.NEAREST)
-        # global sceneFrameTk
-        sceneFrameTk = ImageTk.PhotoImage(frame)
-        sceneFramesTk.append(sceneFrameTk)
+        # global scene_frame_tk
+        scene_frame_tk = ImageTk.PhotoImage(frame)
+        scene_frames_tk.append(scene_frame_tk)
+    
+    print("Loaded {} frames.".format(keyframes))
     
     global frame_index
     frame_index = 0
 
-def loadScene(scene: str): # force input type to be a string to avoid shenanigans
-    global currentScene
-    currentScene = scene
+def load_scene(scene: str): # force input type to be a string to avoid shenanigans
+    print()
+    print("Loading scene: {}".format(scene))
+
+    global current_scene
+    current_scene = scene
 
     # load title
-    sceneTitle = scenes[scene]["name"]
-    winSceneTitle.configure(text = sceneTitle)
+    scene_title = scenes[scene]["name"]
+    win_scene_title.configure(text = scene_title)
 
     # load text
-    sceneText = scenes[scene]["text"]
-    winSceneText.configure(text = sceneText)
+    scene_text = scenes[scene]["text"]
+    win_scene_text.configure(text = scene_text)
 
     # load options
-    sceneOptions = scenes[scene]["options"]
-    sceneOptionsText = ""
-    for option in sceneOptions:
-        sceneOptionsText += ">" + option["action"] + "\n"
-    winSceneOptions.configure(text = sceneOptionsText)
+    scene_options = scenes[scene]["options"]
+    scene_options_text = ""
+    for option in scene_options:
+        scene_options_text += ">" + option["action"] + "\n"
+    win_scene_options.configure(text = scene_options_text)
 
     # load image (and resize it to fit the canvas)
-    sceneImagePath = "Images" + "\\" + scenes[scene]["image"]
-    loadImage(sceneImagePath)
+    scene_image_path = "Images" + "\\" + scenes[scene]["image"]
+    load_image(scene_image_path)
 
-loadScene(FIRST_SCENE)
+    print("Scene loaded.")
 
+#endregion ----------
+
+load_scene(current_scene)
 mainloop()
 
-
-
-#region -----  -----
-
-
+#region ----- TEMPLATE -----
 #endregion ----------
