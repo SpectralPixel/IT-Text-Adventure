@@ -38,8 +38,18 @@ def validate_command(event = None): # event is apparently needed for the Return 
         if option["action"].lower() == command.lower():
             load_scene(option["link"])
 
+restart_warning_triggered = False
 def reset():
-    print("Progress reset")
+    global restart_warning_triggered # get the variable into this scope, otherwise python gets confused (WHY IS PYTHON SO ANNOYING??????)
+
+    if not restart_warning_triggered:
+        win_restart.configure(text = "Are you sure?")
+        restart_warning_triggered = True
+        return
+
+    win_restart.configure(text = "Back to start")
+    restart_warning_triggered = False
+    print("Sent back to beginning.")
     load_scene(FIRST_SCENE)
 
 def save_and_exit():
@@ -95,11 +105,11 @@ win_entry = Entry()
 window.bind('<Return>', validate_command) # when Return is pressed, run validateCommand
 
 win_confirm = Button(
-    text = "Enter",
+    text = "Act!",
     command = validate_command
 )
 win_restart = Button(
-    text = "Restart",
+    text = "Back to start",
     command = reset
 )
 win_save = Button(
