@@ -237,10 +237,15 @@ def load_scene(scene: str): # force input type to be a string to avoid shenaniga
 
     # load options
     scene_options = scenes[scene]["options"]
-    scene_options_text = ""
-    for option in scene_options:
-        scene_options_text += ">" + option["action"] + "\n"
-    win_scene_options.configure(text = scene_options_text)
+    if len(scene_options) == 0:
+        win_scene_options_title.configure(text = "NO OPTIONS AVAILIBLE.")
+        win_scene_options.configure(text = "PRESS [Restart].")
+    else:
+        win_scene_options_title.configure(text = "Options:")
+        scene_options_text = ""
+        for option in scene_options:
+            scene_options_text += ">" + option["action"] + "\n"
+        win_scene_options.configure(text = scene_options_text)
 
     # load image (and resize it to fit the canvas)
     scene_image_path = "Images" + "\\" + scenes[scene]["image"]

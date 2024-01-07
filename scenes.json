@@ -1,12 +1,12 @@
 {
     "start": {
         "name": "Text Adventure!",
-        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec commodo, diam maximus tincidunt finibus, lorem eros eleifend dolor, eget varius turpis magna lacinia lorem. Integer quam ex, blandit eget vulputate a, eleifend eget diam. Vestibulum accumsan nibh nec urna lacinia, quis malesuada odio volutpat. Phasellus ac imperdiet tortor. Curabitur molestie nibh non neque sollicitudin, ornare euismod lorem rhoncus. Vestibulum malesuada velit id aliquet eleifend. Sed sed consectetur nisl. Vestibulum blandit vitae quam sit amet venenatis.",
+        "text": "Hello player. You are in control of a human that is standing in his room (as depicted here (probably (idk how I'm gonna do the images yet))).\nAnyways, this young fellow right here is named... \"Danny\". You can control Danny by giving him commands. A list of possible commands is given below, just enter those into the field and press [Act!] when you're ready.",
         "image": "coconut.jpg",
         "options": [
             {
-                "action": "option1",
-                "link": "scene xyz"
+                "action": "Sleep",
+                "link": "sleep"
             },
             {
                 "action": "option2 hello",
@@ -14,19 +14,175 @@
             }
         ]
     },
-    "scene xyz": {
-        "name": "Something else",
-        "text": "some descriptiom or story (again)",
+    "sleep": {
+        "name": "Go to sleep.",
+        "text": "Danny goes to sleep.",
         "image": "cat-san-andreas.gif",
         "options": [
             {
-                "action": "optionaghuiasdopfh",
-                "link": "some other scene"
+                "action": "Wake up",
+                "link": "sleep_wakeup1"
             },
             {
-                "action": "optionnnnnn",
-                "link": "scene 2 electric boogaloo"
+                "action": "Keep sleeping",
+                "link": "sleep_stay"
             }
         ]
+    },
+    "sleep_stay": {
+        "name": "Keep sleeping.",
+        "text": "Danny keeps sleeping.",
+        "image": "cat-san-andreas.gif",
+        "options": [
+            {
+                "action": "Wake up",
+                "link": "sleep_wakeup1"
+            },
+            {
+                "action": "Keep sleeping",
+                "link": "sleep_stay"
+            }
+        ]
+    },
+    "sleep_wakeup1": {
+        "name": "Wake up.",
+        "text": "Danny keeps sleeping.",
+        "image": "cat-san-andreas.gif",
+        "options": [
+            {
+                "action": "Wake up",
+                "link": "sleep_wakeup2"
+            },
+            {
+                "action": "Keep sleeping",
+                "link": "sleep_stay"
+            }
+        ]
+    },
+    "sleep_wakeup2": {
+        "name": "Wake up!",
+        "text": "Danny keeps sleeping.",
+        "image": "cat-san-andreas.gif",
+        "options": [
+            {
+                "action": "Wake up",
+                "link": "sleep_wakeup3"
+            },
+            {
+                "action": "Keep sleeping",
+                "link": "sleep_stay"
+            }
+        ]
+    },
+    "sleep_wakeup3": {
+        "name": "Come on!! Wake up!!",
+        "text": "Danny keeps sleeping.",
+        "image": "cat-san-andreas.gif",
+        "options": [
+            {
+                "action": "Wake up",
+                "link": "sleep_wakeup4"
+            },
+            {
+                "action": "Keep sleeping",
+                "link": "sleep_stay"
+            }
+        ]
+    },
+    "sleep_wakeup4": {
+        "name": "LISTEN TO WHAT I SAY!!!",
+        "text": "Danny keeps sleeping.",
+        "image": "cat-san-andreas.gif",
+        "options": [
+            {
+                "action": "Wake up",
+                "link": "sleep_wakeup5"
+            },
+            {
+                "action": "Keep sleeping",
+                "link": "sleep_stay"
+            }
+        ]
+    },
+    "sleep_wakeup5": {
+        "name": "Please.... just wake up...",
+        "text": "Danny keeps sleeping. H",
+        "image": "cat-san-andreas.gif",
+        "options": [
+            {
+                "action": "Wake up",
+                "link": "sleep_wakeup6"
+            },
+            {
+                "action": "Keep sleeping",
+                "link": "sleep_stay"
+            }
+        ]
+    },
+    "sleep_wakeup6": {
+        "name": "please.........",
+        "text": "Danny keeps sleeping.",
+        "image": "cat-san-andreas.gif",
+        "options": [
+            {
+                "action": "Wake up",
+                "link": "sleep_wakeup7"
+            },
+            {
+                "action": "Keep sleeping",
+                "link": "sleep_stay"
+            }
+        ]
+    },
+    "sleep_wakeup7": {
+        "name": "wake up, please....",
+        "text": "Danny keeps sleeping.",
+        "image": "cat-san-andreas.gif",
+        "options": [
+            {
+                "action": "Wake up",
+                "link": "sleep_wakeup8"
+            },
+            {
+                "action": "Keep sleeping",
+                "link": "sleep_stay"
+            }
+        ]
+    },
+    "sleep_wakeup8": {
+        "name": "wait a minute...",
+        "text": "Danny keeps sleeping.",
+        "image": "cat-san-andreas.gif",
+        "options": [
+            {
+                "action": "Wake up",
+                "link": "sleep_wakeup9"
+            },
+            {
+                "action": "Keep sleeping",
+                "link": "sleep_stay"
+            }
+        ]
+    },
+    "sleep_wakeup9": {
+        "name": "is Danny dead...?",
+        "text": "Danny keeps sleeping. He seems pretty alive, just asleep.",
+        "image": "cat-san-andreas.gif",
+        "options": [
+            {
+                "action": "Give up",
+                "link": "sleep_giveup"
+            },
+            {
+                "action": "Keep sleeping",
+                "link": "sleep_stay"
+            }
+        ]
+    },
+    "sleep_giveup": {
+        "name": "I give up. Sleep, whatever.",
+        "text": "Danny keeps sleeping. He seems pretty alive, just asleep.",
+        "image": "cat-san-andreas.gif",
+        "options": []
     }
 }
