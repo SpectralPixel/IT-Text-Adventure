@@ -13,8 +13,7 @@
                 "link": "escena"
             }
         ]
-    },
-    "sleep": {
+    }, "sleep": {
         "name": "Go to sleep.",
         "text": "Danny goes to sleep.",
         "image": "cat-san-andreas.gif",
@@ -28,8 +27,7 @@
                 "link": "sleep_stay"
             }
         ]
-    },
-    "sleep_stay": {
+    }, "sleep_stay": {
         "name": "Keep sleeping.",
         "text": "Danny keeps sleeping.",
         "image": "cat-san-andreas.gif",
@@ -43,8 +41,7 @@
                 "link": "sleep_stay"
             }
         ]
-    },
-    "sleep_wakeup1": {
+    }, "sleep_wakeup1": {
         "name": "Wake up.",
         "text": "Danny keeps sleeping.",
         "image": "cat-san-andreas.gif",
@@ -58,8 +55,7 @@
                 "link": "sleep_stay"
             }
         ]
-    },
-    "sleep_wakeup2": {
+    }, "sleep_wakeup2": {
         "name": "Wake up!",
         "text": "Danny keeps sleeping.",
         "image": "cat-san-andreas.gif",
@@ -73,8 +69,7 @@
                 "link": "sleep_stay"
             }
         ]
-    },
-    "sleep_wakeup3": {
+    }, "sleep_wakeup3": {
         "name": "Come on!! Wake up!!",
         "text": "Danny keeps sleeping.",
         "image": "cat-san-andreas.gif",
@@ -88,8 +83,7 @@
                 "link": "sleep_stay"
             }
         ]
-    },
-    "sleep_wakeup4": {
+    }, "sleep_wakeup4": {
         "name": "LISTEN TO WHAT I SAY!!!",
         "text": "Danny keeps sleeping.",
         "image": "cat-san-andreas.gif",
@@ -103,8 +97,7 @@
                 "link": "sleep_stay"
             }
         ]
-    },
-    "sleep_wakeup5": {
+    }, "sleep_wakeup5": {
         "name": "Please.... just wake up...",
         "text": "Danny keeps sleeping. H",
         "image": "cat-san-andreas.gif",
@@ -118,8 +111,7 @@
                 "link": "sleep_stay"
             }
         ]
-    },
-    "sleep_wakeup6": {
+    }, "sleep_wakeup6": {
         "name": "please.........",
         "text": "Danny keeps sleeping.",
         "image": "cat-san-andreas.gif",
@@ -133,8 +125,7 @@
                 "link": "sleep_stay"
             }
         ]
-    },
-    "sleep_wakeup7": {
+    }, "sleep_wakeup7": {
         "name": "wake up, please....",
         "text": "Danny keeps sleeping.",
         "image": "cat-san-andreas.gif",
@@ -148,8 +139,7 @@
                 "link": "sleep_stay"
             }
         ]
-    },
-    "sleep_wakeup8": {
+    }, "sleep_wakeup8": {
         "name": "wait a minute...",
         "text": "Danny keeps sleeping.",
         "image": "cat-san-andreas.gif",
@@ -163,8 +153,7 @@
                 "link": "sleep_stay"
             }
         ]
-    },
-    "sleep_wakeup9": {
+    }, "sleep_wakeup9": {
         "name": "is Danny dead...?",
         "text": "Danny keeps sleeping. He seems pretty alive, just asleep.",
         "image": "cat-san-andreas.gif",
@@ -178,11 +167,24 @@
                 "link": "sleep_stay"
             }
         ]
-    },
-    "sleep_giveup": {
+    }, "sleep_giveup": {
         "name": "I give up. Sleep, whatever.",
         "text": "Danny keeps sleeping. He seems pretty alive, just asleep.",
         "image": "cat-san-andreas.gif",
         "options": []
+    }, "snack": {
+        "name": "Eat a snack",
+        "text": "Right about now is a great time for a snack. You ponder what to get, and quickly decide for some ice cream. What flavour do you get?",
+        "image": "coconut.jpg",
+        "options": [
+            {
+                "action": "Chocolate (dimensional rift confusing ending w/ fast travel) (also a reference to 'meanwhile...' comic)",
+                "link": "sleep"
+            },
+            {
+                "action": "Vanilla (good ending)",
+                "link": "vanilla_ice_cream"
+            }
+        ]
     }
 }

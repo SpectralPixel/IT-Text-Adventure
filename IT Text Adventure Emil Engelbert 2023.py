@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import ImageTk, Image
 from os.path import exists
+from pyglet.font import add_directory
 import json
 
 CANVAS_SIZE = (300, 300)
@@ -8,8 +9,10 @@ FIRST_SCENE = "start"
 
 #region ----- Open game files -----
 
-print("Loading story file...")
+print("Loading fonts...")
+add_directory("Fonts")
 
+print("Loading story file...")
 file = open("scenes.json", "r")
 scenes = file.read() # Read file as plaintext
 scenes = json.loads(scenes) # Turn plaintext into dictionary
@@ -17,13 +20,11 @@ scenes = json.loads(scenes) # Turn plaintext into dictionary
 print("Game files loaded.")
 
 print("Loading save file...")
-
 if not exists("save.txt"):
     save_file = open("save.txt", "w")
     save_file.writelines([FIRST_SCENE])
 save_file = open("save.txt", "r")
 current_scene = save_file.read().strip()
-
 print("Progress loaded.")
 
 #endregion ----------
@@ -74,23 +75,27 @@ window.title("Text Adventure")
 win_scene_title = Label( 
     window,
     anchor = "w",
-    justify = "left"
+    justify = "left",
+    font = ("Quicksand-Bold", 20)
 )
 win_scene_text = Label( 
     window,
     wraplength = 300,
     anchor = "w",
-    justify = "left"
+    justify = "left",
+    font = ("Quicksand-Regular", 10)
 )
 win_scene_options_title = Label(
     window,
     text = "Options:",
     anchor = "w",
+    font = ("Quicksand-Bold", 15)
 )
 win_scene_options = Label(
     window,
     anchor = "w",
-    justify = "left"
+    justify = "left",
+    font = ("Quicksand-Regular", 10)
 )
 
 # canvas to display images
@@ -106,15 +111,18 @@ window.bind('<Return>', validate_command) # when Return is pressed, run validate
 
 win_confirm = Button(
     text = "Act!",
-    command = validate_command
+    command = validate_command,
+    font = ("Quicksand-Regular", 10)
 )
 win_restart = Button(
     text = "Back to start",
-    command = reset
+    command = reset,
+    font = ("Quicksand-Regular", 10)
 )
 win_save = Button(
     text = "Save & Exit",
-    command = save_and_exit
+    command = save_and_exit,
+    font = ("Quicksand-Regular", 10)
 )
 
 #endregion ----------
@@ -239,7 +247,7 @@ def load_scene(scene: str): # force input type to be a string to avoid shenaniga
     scene_options = scenes[scene]["options"]
     if len(scene_options) == 0:
         win_scene_options_title.configure(text = "NO OPTIONS AVAILIBLE.")
-        win_scene_options.configure(text = "PRESS [Restart].")
+        win_scene_options.configure(text = "PRESS [Back to start].")
     else:
         win_scene_options_title.configure(text = "Options:")
         scene_options_text = ""
