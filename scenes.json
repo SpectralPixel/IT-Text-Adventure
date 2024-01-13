@@ -1,5 +1,5 @@
 {
-    "start": {
+       "start": {
         "name": "Text Adventure!",
         "text": "Hello player. You are in control of a human that is standing in his room (as depicted here (probably (idk how I'm gonna do the images yet))).\nAnyways, this young fellow right here is named... \"Danny\". You can control Danny by giving him commands. A list of possible commands is given below, just enter those into the field and press [Act!] when you're ready.",
         "image": "coconut.jpg",
@@ -179,7 +179,7 @@
         "options": [
             {
                 "action": "Chocolate (dimensional rift confusing ending w/ fast travel) (also a reference to 'meanwhile...' comic)",
-                "link": "sleep"
+                "link": "chocolate_ice_cream"
             },
             {
                 "action": "Vanilla (good ending)",
