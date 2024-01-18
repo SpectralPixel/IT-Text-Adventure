@@ -6,6 +6,7 @@ import json
 
 CANVAS_SIZE = (300, 300)
 FIRST_SCENE = "start"
+BG_COLOR = "#eeeeff"
 
 #region ----- Open game files -----
 
@@ -71,31 +72,36 @@ def save_progress():
 
 window = Tk()
 window.title("Text Adventure")
+window.configure(background = BG_COLOR)
 
 win_scene_title = Label( 
     window,
     anchor = "w",
     justify = "left",
-    font = ("Quicksand-Bold", 20)
+    font = ("Quicksand-Bold", 20),
+    background = BG_COLOR
 )
 win_scene_text = Label( 
     window,
     wraplength = 300,
     anchor = "w",
     justify = "left",
-    font = ("Quicksand-Regular", 10)
+    font = ("Quicksand-Regular", 10),
+    background = BG_COLOR
 )
 win_scene_options_title = Label(
     window,
     text = "Options:",
     anchor = "w",
-    font = ("Quicksand-Bold", 15)
+    font = ("Quicksand-Bold", 15),
+    background = BG_COLOR
 )
 win_scene_options = Label(
     window,
     anchor = "w",
     justify = "left",
-    font = ("Quicksand-Regular", 10)
+    font = ("Quicksand-Regular", 10),
+    background = BG_COLOR
 )
 
 # canvas to display images
@@ -112,17 +118,20 @@ window.bind('<Return>', validate_command) # when Return is pressed, run validate
 win_confirm = Button(
     text = "Act!",
     command = validate_command,
-    font = ("Quicksand-Regular", 10)
+    font = ("Quicksand-Regular", 10),
+    background = "#ccffcc"
 )
 win_restart = Button(
     text = "Back to start",
     command = reset,
-    font = ("Quicksand-Regular", 10)
+    font = ("Quicksand-Regular", 10),
+    background = "#ffcccc"
 )
 win_save = Button(
     text = "Save & Exit",
     command = save_and_exit,
-    font = ("Quicksand-Regular", 10)
+    font = ("Quicksand-Regular", 10),
+    background = "#ccccff"
 )
 
 #endregion ----------
