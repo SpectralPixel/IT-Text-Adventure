@@ -6,7 +6,7 @@ import json
 
 CANVAS_SIZE = (300, 300)
 FIRST_SCENE = "start"
-BG_COLOR = "#eeeeff"
+BG_COLOR = "#e6e6ff"
 
 #region ----- Open game files -----
 
@@ -196,9 +196,11 @@ win_canvas.grid(
 #region ----- Scene utility functions -----
 
 frame_index = 0
+frame_durations = []
 def update_frames():
     global frame_index
     frame = scene_frames_tk[frame_index]
+    frame_duration = frame_durations[frame_index]
     frame_index += 1
     if frame_index >= scene_frames_tk.__len__():
         frame_index = 0
@@ -209,7 +211,8 @@ def update_frames():
         image = frame
     )
 
-    window.after(50, update_frames) # to keep the cycle going
+    print(frame_duration)
+    window.after(frame_duration, update_frames) # to keep the cycle going
 window.after(0, update_frames) # to begin the cycle
 
 def load_image(path: str):
@@ -224,18 +227,29 @@ def load_image(path: str):
     if path[path.__len__() - 3:] == "gif": # since it's not guaranteed that the file type is a gif and has the n_frames attribute
         keyframes = scene_image.n_frames
 
+    global frame_durations
+    if len(frame_durations) > 0:
+        frame_durations = []
+
     for i in range(keyframes):
         frame = scene_image
         frame.seek(keyframes // keyframes * i)
+
+        if 'duration' in frame.info:
+            frame_durations.append(frame.info['duration'])
+            print(f"Frame {i} displays for {frame.info['duration']}ms.")
+        else:
+            frame_durations.append(50)
+
         frame = frame.resize((CANVAS_SIZE[0], CANVAS_SIZE[1]), Image.NEAREST)
         # global scene_frame_tk
         scene_frame_tk = ImageTk.PhotoImage(frame)
         scene_frames_tk.append(scene_frame_tk)
     
-    print("Loaded {} frames.".format(keyframes))
-    
     global frame_index
     frame_index = 0
+    
+    print("Loaded {} frames.".format(keyframes))
 
 def load_scene(scene: str): # force input type to be a string to avoid shenanigans
     print()
