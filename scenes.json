@@ -2,7 +2,7 @@
        "start": {
         "name": "Text Adventure!",
         "text": "Hello player. You are in control of a human that is standing in his room (as depicted here (probably (idk how I'm gonna do the images yet))).\nAnyways, this young fellow right here.\nYou can control the human by giving him commands.\nA list of possible commands is given below, just enter those into the field and press [Act!] when you're ready.",
-        "image": "coconut.jpg",
+        "image": "egbert.png",
         "options": [
             {
                 "action": "Sleep",
@@ -16,7 +16,7 @@
     }, "sleep": {
         "name": "Go to sleep.",
         "text": "You go to sleep.",
-        "image": "cat-san-andreas.gif",
+        "image": "sleep jump.gif",
         "options": [
             {
                 "action": "Wake up",
@@ -30,7 +30,7 @@
     }, "sleep_stay": {
         "name": "Keep sleeping.",
         "text": "You keep sleeping.",
-        "image": "cat-san-andreas.gif",
+        "image": "sleep.gif",
         "options": [
             {
                 "action": "Wake up",
@@ -44,7 +44,7 @@
     }, "sleep_wakeup1": {
         "name": "Wake up.",
         "text": "You keep sleeping.",
-        "image": "cat-san-andreas.gif",
+        "image": "sleep.gif",
         "options": [
             {
                 "action": "Wake up",
@@ -58,7 +58,7 @@
     }, "sleep_wakeup2": {
         "name": "Wake up!",
         "text": "You keep sleeping.",
-        "image": "cat-san-andreas.gif",
+        "image": "sleep.gif",
         "options": [
             {
                 "action": "Wake up",
@@ -72,7 +72,7 @@
     }, "sleep_wakeup3": {
         "name": "Come on!! Wake up!!",
         "text": "You keep sleeping.",
-        "image": "cat-san-andreas.gif",
+        "image": "sleep.gif",
         "options": [
             {
                 "action": "Wake up",
@@ -86,7 +86,7 @@
     }, "sleep_wakeup4": {
         "name": "LISTEN TO WHAT I SAY!!!",
         "text": "You keep sleeping.",
-        "image": "cat-san-andreas.gif",
+        "image": "sleep.gif",
         "options": [
             {
                 "action": "Wake up",
@@ -100,7 +100,7 @@
     }, "sleep_wakeup5": {
         "name": "Please.... just wake up...",
         "text": "You keep sleeping. H",
-        "image": "cat-san-andreas.gif",
+        "image": "sleep.gif",
         "options": [
             {
                 "action": "Wake up",
@@ -114,7 +114,7 @@
     }, "sleep_wakeup6": {
         "name": "please.........",
         "text": "You keep sleeping.",
-        "image": "cat-san-andreas.gif",
+        "image": "sleep.gif",
         "options": [
             {
                 "action": "Wake up",
@@ -128,7 +128,7 @@
     }, "sleep_wakeup7": {
         "name": "wake up, please....",
         "text": "You keep sleeping.",
-        "image": "cat-san-andreas.gif",
+        "image": "sleep.gif",
         "options": [
             {
                 "action": "Wake up",
@@ -142,7 +142,7 @@
     }, "sleep_wakeup8": {
         "name": "wait a minute...",
         "text": "You keep sleeping.",
-        "image": "cat-san-andreas.gif",
+        "image": "sleep.gif",
         "options": [
             {
                 "action": "Wake up",
@@ -156,7 +156,7 @@
     }, "sleep_wakeup9": {
         "name": "is the human dead...?",
         "text": "The human keeps sleeping. He seems pretty alive, just asleep.",
-        "image": "cat-san-andreas.gif",
+        "image": "sleep.gif",
         "options": [
             {
                 "action": "Give up",
@@ -170,12 +170,12 @@
     }, "sleep_giveup": {
         "name": "I give up. Sleep, whatever.",
         "text": "You keep sleeping.\nYou get the SLEEPY ending.",
-        "image": "cat-san-andreas.gif",
+        "image": "sleep.gif",
         "options": []
     }, "snack": {
         "name": "Eat a snack",
         "text": "Right about now is a great time for a snack. You ponder what to get, and quickly decide for some ice cream.\nWhat flavour do you get?",
-        "image": "coconut.jpg",
+        "image": "thinking.gif",
         "options": [
             {
                 "action": "Chocolate",
@@ -189,7 +189,7 @@
     }, "vanilla_ice_cream": {
         "name": "Eat a vanilla ice cream",
         "text": "You're not even at the ice cream place yet, but sure.\nYou walk to the ice cream place and order your ice cream.",
-        "image": "coconut.jpg",
+        "image": "vanilla ice cream.png",
         "options": [
             {
                 "action": "Enjoy",
@@ -199,12 +199,12 @@
     }, "vanilla_ice_cream_ending": {
         "name": "Enjoy the ice cream (or else)",
         "text": "You enjoy your ice cream, and decide to walk home again.\nNothing noteworthy happens, and nothing noteworthy will happen. Pat yourself on the back for choosing the most mundane path in the whole game. Are you proud of yourself?\nYou get the MUNDANE ending.",
-        "image": "coconut.jpg",
+        "image": "vanilla ice cream.png",
         "options": []
     }, "chocolate_ice_cream": {
         "name": "Eat a chocolate ice cream",
         "text": "You're not even at the ice cream place yet, but sure.\nYou use your hi-tech watch to fast travel to the ice cream place... Obviously.\nThis will surely not have any repercussions whatsoever.\nYou enjoy your ice cream, because chocolate is a good flavour that everyone enjoys and nobody would ever choose vanilla over.\nAfter enjoying your ice cream you walk home. As you are about to enter your home, you hear turmoil inside. Nobody should be home.\nHow do you proceed?",
-        "image": "coconut.jpg",
+        "image": "teleport.gif",
         "options": [
             {
                 "action": "Enter",
@@ -214,7 +214,7 @@
     }, "enter_house": {
         "name": "Go inside!",
         "text": "You enter your house, it's definitely more messy than when you left. Furniture thrown over, mirrors shattered, bullet holes in your walls. There's been a fight in your house.\nYou hear people talking in your room.\nWhat's your plan?",
-        "image": "coconut.jpg",
+        "image": "entrance.gif",
         "options": [
             {
                 "action": "Sleep",
@@ -232,7 +232,7 @@
     }, "stealth_sleep": {
         "name": "wait what??",
         "text": "You walk into your room to find a disarmed clone of yourself being held at gunpoint by some scary looking fella. It doesn't matter to you though, you ignore the situation and walk towards your bed. The scary man doesn't seem to be cooperative and before you know it he aims the gun at you and... ends your progress.\nSince the clone is, well, a clone of you, you now get to control him.\nSince the Russian is turned around and busy putting holes into the human you used to control before being stupid, you can use this opportunity to ACT!.",
-        "image": "coconut.jpg",
+        "image": "kill.gif",
         "options": [
             {
                 "action": "Sleep",
@@ -254,7 +254,7 @@
     }, "stealth_barge_in": {
         "name": "Check out the noise!",
         "text": "You barge into your room to find a disarmed clone of yourself being held at gunpoint by some scary looking fella. You freeze. A million questions are racing through your head. Your confusion is ended with a loud BANG!. The enemy has decided to help you out by putting a hole in the body part that makes you feel confusion and ask questions.\nSince your human is no longer capable of ACT!ing and your clone is, well, a clone of you, you now get to control the clone.\nSince the Russian is turned around and busy putting holes into the human you used to control before getting into quite the predicament, you can use this opportunity to ACT!.",
-        "image": "coconut.jpg",
+        "image": "kill.gif",
         "options": [
             {
                 "action": "Sleep",
@@ -276,17 +276,17 @@
     }, "stealth_clone_sleep": {
         "name": "*sigh*",
         "text": "You lay down in bed. When the enemy is done wasting the human you used to control, he turns around to you and you meet the same fate. Sweet dreams.\nYou get the SERIOUSLY? ending.",
-        "image": "coconut.jpg",
+        "image": "sleep kill.gif",
         "options": []
     }, "stealth_clone_run": {
         "name": "GET AWAY WHILE YOU CAN",
         "text": "You run as fast as you can past the enemy and out of your room. You're not very fast, and the Russian doesn't want to go back to talking. He pulls the trigger, and his job is completed.\nOk ok... you've been a fool throughout this whole final section. Do better next time, maybe try aggression. Unfortunately, this is a \"kill or be killed\" situation. You get the FOOLISH COWARD ending.",
-        "image": "coconut.jpg",
+        "image": "run away.gif",
         "options": []
     }, "stealth_clone_punch": {
         "name": "Get him!",
         "text": "The Russian is pissed, so as soon as he can he will turn around and end you. KABLOW!! He turns back around to you, but instead meets a knuckle sandwich. You knock him back a couple meters, and his gun lands at your feet. You grab it, and eliminate the Russian.\nYou should be safe, the only question now is what to do with the bodies.",
-        "image": "coconut.jpg",
+        "image": "punch.gif",
         "options": [
             {
                 "action": "Dispose",
@@ -299,8 +299,8 @@
         ]
     }, "stealth_clone_grab_gun": {
         "name": "Grab his gun!",
-        "text": "You tackle the Russian from behind and knock him down. His gun skids across the floor. You and the Russian look at each other as it becomes clear to both of you that only the person who grabs that gun first will survive.\nYou both scramble across the floor, grabbing and pulling each other in the process. The Russian grabs the firearm and points it at you. You grab his hands just in time to make him miss his shot by mere centimeters. You kick the Russian away with your foot and he loses his grip on the gun. You now have a clear shot, and take it. You win. Finally.\nBut you've made quite a mess which you now have to clean up. The first apparent problem is what to do with the deceased littered around your room.",
-        "image": "coconut.jpg",
+        "text": "The image speaks for itself... Well, now you have a bunch of dead in your room.\nWhat to do with these guys?",
+        "image": "grab gun.gif",
         "options": [
             {
                 "action": "Dispose",
@@ -314,12 +314,8 @@
     }, "stealth_sneak_up": {
         "name": "Go inside!",
         "text": "You sneak into the kitchen to fetch your illegal handgun. Because obviously you have one because it's important for the plot.\nYou sneak up to the door with you gun at the ready, already loaded. Now what?",
-        "image": "coconut.jpg",
+        "image": "sneak up with gun.webp",
         "options": [
-            {
-                "action": "KYS",
-                "link": "kys"
-            },
             {
                 "action": "Enter",
                 "link": "stealth_enter_armed"
@@ -328,12 +324,12 @@
     }, "kys": {
         "name": "kill yourself",
         "text": "uhm... ok... you do that...\nYou get the SUICIDAL ending.",
-        "image": "coconut.jpg",
+        "image": "kys.gif",
         "options": []
     }, "stealth_enter_armed": {
         "name": "Enter",
         "text": "You sneak into your room to find a disarmed clone of yourself being held at gunpoint by some scary looking fella. You have a million questions, but it's not time to ponder those. You have your priorities straight, so you very quietly approach the enemy and then end him at point-blank range. You now stand in front of a clone of yourself. It's like looking into a mirror. The clone is unarmed.\nWhat do you do with him?",
-        "image": "coconut.jpg",
+        "image": "sneak up.gif",
         "options": [
             {
                 "action": "High five",
@@ -347,12 +343,12 @@
     }, "high_five_ending": {
         "name": "\"Up top!\"",
         "text": "You and your clone high five! Unfortunately, because of some BS law of dimensional travel, direct contact between live alternate dimension counterparts of one self is strictly prohibited. The entire dimension collapses in on itself. You've killed everyone, destroyed everything. Not even the abstract concept of \"nothingness\" remains. Good job.\nYou get the BUDDIES ending.",
-        "image": "coconut.jpg",
+        "image": "high five.gif",
         "options": []
     }, "kill_mailmc": {
         "name": "this is too trippy man",
         "text": "You waste the clone, all of this is just way to confusing.\nNow you find yourself in quite the predicament... what to do with this entire mess? What to do with the bodies?",
-        "image": "coconut.jpg",
+        "image": "jesse.gif",
         "options": [
             {
                 "action": "Dispose",

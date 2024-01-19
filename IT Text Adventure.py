@@ -211,7 +211,6 @@ def update_frames():
         image = frame
     )
 
-    print(frame_duration)
     window.after(frame_duration, update_frames) # to keep the cycle going
 window.after(0, update_frames) # to begin the cycle
 
